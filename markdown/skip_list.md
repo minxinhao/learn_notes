@@ -1,10 +1,10 @@
-#Skip_list解读
+# Skip_list解读
 
 因为需要阅读LSM的相关文章，有提到skip list，对于跳表这个名字非常好奇，所以过来学习一下。
 主要参考了[一篇博客](http://www.cppblog.com/mysileng/archive/2013/04/06/199159.html)。这也是第一次写学习笔记，为了锻炼一下自己的学习习惯。
 参考的博客原文对skip list基本内容介绍的也很清楚了，这里主要写一下自己在阅读过程中卡壳的地方。
 
-##1.数据结构定义
+## 1.数据结构定义
 
     typedef  struct nodeStructure  
     {  
@@ -22,11 +22,11 @@
 
 skiplist结构定义了skiplist当前的高度level和第一列header。
 
-###2.函数实现
+### 2.函数实现
 
 对于数据结构定义的疑惑只能通过阅读他实现的功能函数来解决。
 
-####1.createSkiplist
+#### 1.createSkiplist
 
     skiplist* createSkiplist()  {  
         skiplist *sl=(skiplist *)malloc(sizeof(skiplist));    
@@ -41,7 +41,7 @@ skiplist结构定义了skiplist当前的高度level和第一列header。
 初始化声明一个skiplist的时候首先申请一列最大高度的nodeStructure作为skiplist的header。然后每一个header的forward数组置为NULL.这里就合我之前理解的nodeStructure代表一列发生了矛盾。而且forward是一个大小为1的指针数组，这里却进行了越界访问。所以这里只能认为nodeStructure就是代表一层链表继续分析,forward指向的是链表中下一个元素。
 而要继续弄清楚这里实现的skiplist结构，我认为只能通过insert、find等功能函数进行分析，通过和理论给出的skiplist find、insert操作对比来分析代码定义的数据结构。
 
-####2.insert
+#### 2.insert
 
 给出的算法中，insert首先利用查找功能，找到最底层中比给定key小的最大key的位置。而实现的代码中对应的部分是:
 

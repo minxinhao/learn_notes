@@ -11,5 +11,6 @@
 目前个人认为需要的信息是B+树在SSD上的表现以及B+树和Nosql数据库的配合。
 
 > 虽然参考知乎有点low，但是暂时没有找到合适的介绍材料
-![参考1](https://www.zhihu.com/search?type=content&q=lsm%20b%2B)
+
+![参考1](https://github.com/minxinhao/learn_notes/blob/master/NVM/Snip20190924_3.png)
 

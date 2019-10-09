@@ -13,8 +13,8 @@
         struct nodeStructure *forward[1];  
     }nodeStructure;  
 
-这里定义的nodeStructure是指skip list中的一列(这一点可以通过定义的createNode函数看出来)，因为每一列的key、value相同，所以实际上不需要重复存储，这是我疑惑的第一个地方。forward指向一列中向下(?向上)的下一个节点。当forward为NULL时代表这一列结束。给出的nodeStructure中只有forward指针，没有指向左或者右的指针，这是我疑惑的第二个地方，不清楚在同一层的链表中进行向右移动(毕竟每一层都没有链表)。 
-    
+这里定义的nodeStructure是指skip list中的一列(这一点可以通过定义的createNode函数看出来)，因为每一列的key、value相同，所以实际上不需要重复存储，这是我疑惑的第一个地方。forward指向一列中向下(?向上)的下一个节点。当forward为NULL时代表这一列结束。给出的nodeStructure中只有forward指针，没有指向左或者右的指针，这是我疑惑的第二个地方，不清楚在同一层的链表中进行向右移动(毕竟每一层都没有链表)。
+
     typedef  struct skiplist  {  
         int level;    
         nodeStructure *header;  
@@ -80,5 +80,4 @@ skiplist结构定义了skiplist当前的高度level和第一列header。
         return ns;    
     } 
 
-这里给ns分配空间的时候malloc了level+1个nodeStructure指针大小的空间(nodestructure中包含的)。而createSkiplist的时候传递给createNode的参数是MAX_LEVEL-1。所以分析可以知道，forward数组的第一个元素(forward\[0\])存放的是该层右边的元素，而从1～MAX_LE
-VEL-1的元素对应第i层链表的对应位置。
+这里给ns分配空间的时候malloc了level+1个nodeStructure指针大小的空间(nodestructure中包含的)。而createSkiplist的时候传递给createNode的参数是MAX_LEVEL-1。所以分析可以知道，forward数组的第一个元素(forward[0])存放的是该层右边的元素，而从1～MAX_LEVEL-1的元素对应第i层链表的对应位置。

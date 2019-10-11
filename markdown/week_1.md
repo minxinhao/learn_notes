@@ -446,8 +446,20 @@ index block结构如下图：
 
 #### footer block结构
 
-footer用来存储meta index block与index block在sstable中的索引信息。另外尾部还会存储用来对其的字段以及一个magic word，内容为：”http://code.google.com/p/leveldb/“字符串sha1哈希的前8个字节。
+footer用来存储meta index block与index block在sstable中的索引信息。另外尾部还会存储用来对其的字段以及一个magic word，内容为："http://code.google.com/p/leveldb/"字符串sha1哈希的前8个字节。
 
+> 到这里doc文件夹中的所有指导就都看完了。LEVELDB大致的结构和运行过程也看了。接下来计划是看完table文件夹和include文件夹中的源码，然后做好笔记。然后最后整理出运行的大致框架。
+
+## Log
+
+为了增加读取效率，日志文件中按照block进行划分，每个block的大小为32KiB。每个block中包含了若干个完整的chunk。
+
+一条日志记录包含一个或多个chunk。每个chunk包含了一个7字节大小的header，前4字节是该chunk的校验码，紧接的2字节是该chunk数据的长度，以及最后一个字节是该chunk的类型。其中checksum校验的范围包括chunk的类型以及随后的data数据。
+
+chunk共有四种类型：full，first，middle，last。一条日志记录若只包含一个chunk，则该chunk的类型为full。若一条日志记录包含多个chunk，则这些chunk的第一个类型为first, 最后一个类型为last，中间包含大于等于0个middle类型的chunk。
+
+
+![log_structure](./log_structure.png "log_structure")
 
 ## 写在最后
 

@@ -446,7 +446,9 @@ index block结构如下图：
 
 #### footer block结构
 
-footer用来存储meta index block与index block在sstable中的索引信息。另外尾部还会存储用来对其的字段以及一个magic word，内容为：”http://code.google.com/p/leveldb/“字符串sha1哈希的前8个字节。
+footer用来存储meta index block与index block在sstable中的索引信息。另外尾部还会存储用来对其的字段以及一个magic word，内容为："http://code.google.com/p/leveldb/"字符串sha1哈希的前8个字节。
+
+> 到这里doc文件夹中的所有指导就都看完了。LEVELDB大致的结构和运行过程也看了。接下来计划是看完table文件夹和include文件夹中的源码，然后做好笔记。然后最后整理出运行的大致框架。
 
 
 ## 写在最后

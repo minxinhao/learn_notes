@@ -450,6 +450,8 @@ footer用来存储meta index block与index block在sstable中的索引信息。�
 
 > 到这里doc文件夹中的所有指导就都看完了。LEVELDB大致的结构和运行过程也看了。接下来计划是看完table文件夹和include文件夹中的源码，然后做好笔记。然后最后整理出运行的大致框架。
 
+> 到这里doc文件夹中的所有指导就都看完了。LEVELDB大致的结构和运行过程也看了。接下来计划是看完table文件夹和include文件夹中的源码，然后做好笔记。然后最后整理出运行的大致框架。
+
 ## Log
 
 为了增加读取效率，日志文件中按照block进行划分，每个block的大小为32KiB。每个block中包含了若干个完整的chunk。
